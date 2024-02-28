@@ -43,9 +43,9 @@ export default function Navbar() {
 
             {
               !currentUser ? 
-                <a className="hover:text-blue-700 cursor-pointer mr-4" onClick={() => router.push("/login")}>Ingresar</a>
+                <a className="hover:text-blue-700 cursor-pointer mr-6" onClick={() => router.push("/login")}>Ingresar</a>
               : 
-                <a className="hover:text-blue-700 cursor-pointer mr-4" onClick={() => { removeData(), router.push("/login")}}>Cerrar sesión</a> 
+                <a className="hover:text-blue-700 cursor-pointer mr-6" onClick={() => { removeData(), router.push("/login")}}>Cerrar sesión</a> 
             }
             
           </div>

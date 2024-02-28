@@ -38,6 +38,7 @@ export default function page() {
 
   return (
     <Container>
+      <div className="w-full flex justify-center">
         <div className="w-[60vw] min-w-[400px] max-w-[900px] text-center p-4 gap-4 border-2 rounded-md mt-10">
           <h1 className="font-bold">Lista de tareas</h1>
         <hr className="my-4 " />
@@ -66,6 +67,7 @@ export default function page() {
               handleCompleteTodo={handleCompleteTodo}
             />
           </div>
+        </div>
         </div>
     </Container>
   );
