@@ -2,11 +2,16 @@
 'use client'
 
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Home() {
 
   const router = useRouter()
-  const currentUser = JSON.parse(localStorage.getItem('user'))  
+  const [currentUser, setCurrentUser] = useState(null)
+
+  useEffect(() => {
+    setCurrentUser(JSON.parse(localStorage.getItem('user')))
+  }, [])
 
   if (!currentUser) {
     return <div className="w-full text-center mt-8 mb-6">
@@ -20,6 +25,6 @@ export default function Home() {
   }
 
   return (
-    <div>a</div>
+    <></>
   );
 }

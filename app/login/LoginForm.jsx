@@ -24,12 +24,15 @@ export default function LoginForm() {
       .then((res) => {
         console.log(res.data)
         
-        
         if (res.data.Response === "No existe") {
           toast.error("No existe usuario")
         }
         
-        localStorage.setItem("user", JSON.stringify(res.data))
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem("user", JSON.stringify(res.data))
+        } else {
+          console.log('Web Storage is not supported in this environment.');
+        }        
         toast.success(`Bienvenido ${res.data.user}`)
         router.push("/task-list")
       })

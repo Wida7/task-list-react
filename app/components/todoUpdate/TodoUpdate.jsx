@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FiEdit } from "react-icons/fi";
 
@@ -8,7 +8,12 @@ export default function TodoUpdate({ todo, handleUpdateTodo }) {
     register,
     formState: { errors },
   } = useForm();
-  const currentUser = JSON.parse(localStorage.getItem("user"));
+
+  const [currentUser, setCurrentUser] = useState(null)
+
+  useEffect(() => {
+    setCurrentUser(JSON.parse(localStorage.getItem('user')))
+  }, [])
 
   const [disabled, setDisabled] = useState(true);
   const focusInputRef = useRef();
@@ -37,11 +42,12 @@ export default function TodoUpdate({ todo, handleUpdateTodo }) {
           disabled={disabled}
           {...register("Task", { required: true, maxLength: 200 })}
         />
-        {currentUser.rol === "admin" ? (
+        {currentUser?.rol === "admin" ? (
           <button
             type="submit"
             onClick={() => setDisabled(!disabled)}
-            className="items-center mr-2"
+            className={`items-center mr-2 ${todo?.done ? "cursor-not-allowed" : ""}`}
+            disabled={todo?.done}
           >
             <FiEdit />
           </button>

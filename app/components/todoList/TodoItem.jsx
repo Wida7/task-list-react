@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import TodoUpdate from "../todoUpdate/TodoUpdate";
 import toast from "react-hot-toast";
@@ -9,7 +9,13 @@ export default function TodoItem({
   handleUpdateTodo,
   handleCompleteTodo,
 }) {
-  const currentUser = JSON.parse(localStorage.getItem("user"));
+
+  const [currentUser, setCurrentUser] = useState(null)
+
+  useEffect(() => {
+    setCurrentUser(JSON.parse(localStorage.getItem('user')))
+  }, [])
+
   const [completed, setCompleted] = useState(todo.done);
 
   return (
@@ -28,7 +34,7 @@ export default function TodoItem({
         ></div>
       </span>
       <TodoUpdate todo={todo} handleUpdateTodo={handleUpdateTodo} />
-      {currentUser.rol === "admin" ? (
+      {currentUser?.rol === "admin" ? (
         <>
           <button
             onClick={() => {

@@ -9,7 +9,11 @@ export default function Navbar() {
 	const pathname = usePathname()
   const router = useRouter()
   const [tittle, setTitle] = useState("")
-  const currentUser = JSON.parse(localStorage.getItem('user'))
+  
+  const [currentUser, setCurrentUser] = useState(null)
+  useEffect(() => {
+      setCurrentUser(JSON.parse(localStorage.getItem('user')))
+  }, [pathname])
 
 	useEffect(() => {
 		switch (pathname) {
@@ -21,6 +25,10 @@ export default function Navbar() {
 				break;
 		}
 	}, [pathname])
+
+  const removeData = () => {
+    localStorage.removeItem("user")
+  }
 	
   return (
     <div
@@ -34,10 +42,10 @@ export default function Navbar() {
             <p className=" font-bold text-xl ml-4">{tittle}</p>
 
             {
-              currentUser ? 
-                <a className="hover:text-blue-700 cursor-pointer mr-4" onClick={() => {localStorage.removeItem("user"), router.push("/login")}}>Cerrar sesión</a> 
-              : 
+              !currentUser ? 
                 <a className="hover:text-blue-700 cursor-pointer mr-4" onClick={() => router.push("/login")}>Ingresar</a>
+              : 
+                <a className="hover:text-blue-700 cursor-pointer mr-4" onClick={() => { removeData(), router.push("/login")}}>Cerrar sesión</a> 
             }
             
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
 import TodoAdd from "../components/todoAdd/TodoAdd";
 import TodoList from "../components/todoList/TodoList";
@@ -20,7 +20,12 @@ export default function page() {
     handleCompleteTodo,
   } = useTodo()
 
-  const currentUser = JSON.parse(localStorage.getItem('user'))
+  const [currentUser, setCurrentUser] = useState(null)
+
+  useEffect(() => {
+    setCurrentUser(JSON.parse(localStorage.getItem('user')))
+  }, [])
+
 
   if (!currentUser) {
     return <div className="w-full text-center mt-8 mb-6">
