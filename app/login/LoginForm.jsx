@@ -25,7 +25,7 @@ export default function LoginForm() {
         console.log(res.data)
         
         if (res.data.Response === "No existe") {
-          toast.error("No existe usuario")
+          return toast.error("No existe usuario")
         }
         
         if (typeof localStorage !== 'undefined') {
