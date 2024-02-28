@@ -7,8 +7,8 @@ export default function TodoList({
   handleUpdateTodo,
   handleCompleteTodo,
 }) {
-  return (
-    <ul className="list-disc w-5/6">
+  return <>
+    {todos.length === 0 ? <p className="my-8 font-semibold">No hay tareas disponibles, puedes crearlas con el usuario admin</p> : <ul className="list-disc w-5/6">
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
@@ -18,6 +18,7 @@ export default function TodoList({
           handleCompleteTodo={handleCompleteTodo}
         />
       ))}
-    </ul>
-  );
+    </ul>}
+    
+  </>
 }
