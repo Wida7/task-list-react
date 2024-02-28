@@ -6,7 +6,6 @@ import TodoAdd from "../components/todoAdd/TodoAdd";
 import TodoList from "../components/todoList/TodoList";
 import { useTodo } from "../hooks/useTodo";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 
 export default function page() {
 
